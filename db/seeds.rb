@@ -11,13 +11,7 @@ Plant.create(name: "Big Creek")
 
 # Create Addresses
 5.times do 
-  Address.create(
-    street: Faker::Address.street_address, 
-    city: Faker::Address.city, 
-    state: Faker::Address.state, 
-    zip: Faker::Address.zip, 
-    plant_id: rand(1..3) 
-    )
+  Address.create(street: Faker::Address.street_address, city: Faker::Address.city, state: Faker::Address.state, zip: Faker::Address.zip, plant_id: rand(1..3))
 end
 
 # Create Rounds
@@ -61,7 +55,15 @@ end
 # Create Users without manager_id
 # Can Set a user as a manager on the frontend
 5.times do 
-  User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, username: Faker::Team.creature, password_digest: BCrypt::Password.create("password"),  bio: Faker::Lorem.sentence(3), avatar: Faker::Avatar.image, plant_id: 1)
+  User.create(
+    first_name: Faker::Name.first_name, 
+    last_name: Faker::Name.last_name, 
+    username: Faker::Team.creature, 
+    password_digest: BCrypt::Password.create("password"),  
+    bio: Faker::Lorem.sentence(3), 
+    avatar: Faker::Avatar.image, 
+    plant_id: 1
+    )
 end
 
 # Create Shifts
