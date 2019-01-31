@@ -20,9 +20,12 @@ ActiveRecord::Schema.define(version: 2019_01_31_154030) do
     t.string "city"
     t.string "state"
     t.string "zip"
+    t.integer "addressable_id"
+    t.string "addressable_type"
     t.bigint "plant_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["addressable_id", "addressable_type"], name: "index_addresses_on_addressable_id_and_addressable_type"
     t.index ["plant_id"], name: "index_addresses_on_plant_id"
   end
 
@@ -53,7 +56,7 @@ ActiveRecord::Schema.define(version: 2019_01_31_154030) do
 
   create_table "rounds", force: :cascade do |t|
     t.string "name"
-    t.datetime "time_of_day"
+    t.string "time_of_day"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -5,6 +5,6 @@ class User < ApplicationRecord
   belongs_to :plant
   has_many :rounds, through: :shifts
   has_many :operators, class_name: "User", foreign_key: "manager_id"
-  belongs_to :manager, class_name: "User"
+  belongs_to :manager, class_name: "User", optional: true
   has_one :address, as: :addressable
 end
