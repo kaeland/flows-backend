@@ -70,15 +70,15 @@ ActiveRecord::Schema.define(version: 2019_01_31_154030) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
-    t.string "bio"
+    t.text "bio"
     t.string "avatar"
-    t.bigint "manager_id_id"
+    t.bigint "manager_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "first_name"
     t.string "last_name"
     t.bigint "plant_id"
-    t.index ["manager_id_id"], name: "index_users_on_manager_id_id"
+    t.index ["manager_id"], name: "index_users_on_manager_id"
     t.index ["plant_id"], name: "index_users_on_plant_id"
   end
 

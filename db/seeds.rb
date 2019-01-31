@@ -58,3 +58,24 @@ Round.create(name: "Day-Third", time_of_day: Tod::TimeOfDay.parse "3pm")
 # Round.create(name: "Night-Second", time_of_day: Tod::TimeOfDay.parse "noon")
 # Round.create(name: "Night-Third", time_of_day: Tod::TimeOfDay.parse "noon")
 
+# Create Shifts
+15.times do  
+  Shift.create(user_id: rand(1..5), round_id: rand(1..3))
+end
+
+# Create Users without manager_id
+# Can Set a user as a manager on the frontend
+5.times do 
+  User.create(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    username: Faker::Team.creature,
+    password_digest: BCrypt::Password.create("password"), 
+    bio: Faker::Lorem.sentence(3),
+    avatar: Faker::Avatar.image,
+    plant_id: 1
+    )
+end
+
+
+
