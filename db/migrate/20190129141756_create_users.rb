@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :password_digest
       t.string :bio
       t.string :avatar
-
+      t.references :manager_id
       t.timestamps
     end
   end

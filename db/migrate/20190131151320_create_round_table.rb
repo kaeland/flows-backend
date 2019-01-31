@@ -1,7 +1,8 @@
 class CreateRoundTable < ActiveRecord::Migration[5.2]
   def change
     create_table :rounds do |t|
-      t.datetime :time
+      t.string :name
+      t.datetime :time_of_day
       t.datetime :created_at
       t.datetime :updated_at
     end

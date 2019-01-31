@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 2019_01_31_154030) do
 
   create_table "data", force: :cascade do |t|
     t.string "name"
-    t.string "type"
     t.decimal "payload"
     t.bigint "machine_id"
     t.datetime "created_at"
@@ -38,7 +37,6 @@ ActiveRecord::Schema.define(version: 2019_01_31_154030) do
 
   create_table "machines", force: :cascade do |t|
     t.string "name"
-    t.string "type"
     t.bigint "plant_id"
     t.bigint "round_id"
     t.datetime "created_at"
@@ -54,7 +52,8 @@ ActiveRecord::Schema.define(version: 2019_01_31_154030) do
   end
 
   create_table "rounds", force: :cascade do |t|
-    t.datetime "time"
+    t.string "name"
+    t.datetime "time_of_day"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -73,11 +72,13 @@ ActiveRecord::Schema.define(version: 2019_01_31_154030) do
     t.string "password_digest"
     t.string "bio"
     t.string "avatar"
+    t.bigint "manager_id_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "first_name"
     t.string "last_name"
     t.bigint "plant_id"
+    t.index ["manager_id_id"], name: "index_users_on_manager_id_id"
     t.index ["plant_id"], name: "index_users_on_plant_id"
   end
 
