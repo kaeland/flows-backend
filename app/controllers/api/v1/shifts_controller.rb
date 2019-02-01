@@ -26,6 +26,7 @@ class Api::V1::ShiftsController < ApplicationController
   private
   def shift_params
     params.require(:shift).permit(
+      :name,
       :user_id, 
       :round_id
     )

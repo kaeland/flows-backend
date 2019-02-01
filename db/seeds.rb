@@ -11,13 +11,13 @@ Plant.create(name: "Big Creek")
 
 # Create Addresses
 5.times do 
-  Address.create(street: Faker::Address.street_address, city: Faker::Address.city, state: Faker::Address.state, zip: Faker::Address.zip, plant_id: rand(1..3))
+  Address.create(street: Faker::Address.street_address, city: Faker::Address.city, state: Faker::Address.state, zip: Faker::Address.zip, plant_id: 1)
 end
 
 # Create Rounds
-Round.create(name: "Day-First", time_of_day: "7am")
-Round.create(name: "Day-Second", time_of_day: "11am")
-Round.create(name: "Day-Third", time_of_day: "3pm")
+Round.create(time_of_day: "7am")
+Round.create(time_of_day: "11am")
+Round.create(time_of_day: "3pm")
 # Round.create(name: "Night-First", time_of_day: Tod::TimeOfDay.parse "noon")
 # Round.create(name: "Night-Second", time_of_day: Tod::TimeOfDay.parse "noon")
 # Round.create(name: "Night-Third", time_of_day: Tod::TimeOfDay.parse "noon")
@@ -68,7 +68,7 @@ end
 
 # Create Shifts
 15.times do  
-  Shift.create(user_id: rand(1..5), round_id: rand(1..3))
+  Shift.create(name: "Day", user_id: rand(1..5), round_id: rand(1..3))
 end
 
 

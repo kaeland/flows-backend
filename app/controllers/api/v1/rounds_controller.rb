@@ -26,7 +26,6 @@ class Api::V1::RoundsController < ApplicationController
   private
   def round_params
     params.require(:round).permit(
-      :name, 
       :time_of_day
     )
   end

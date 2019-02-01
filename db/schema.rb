@@ -55,13 +55,13 @@ ActiveRecord::Schema.define(version: 2019_01_31_154030) do
   end
 
   create_table "rounds", force: :cascade do |t|
-    t.string "name"
     t.string "time_of_day"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "shifts", force: :cascade do |t|
+    t.string "name"
     t.bigint "user_id"
     t.bigint "round_id"
     t.datetime "created_at"
