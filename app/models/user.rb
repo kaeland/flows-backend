@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_secure_password # From Bcrypt Gem
 
-  belongs_to :plant
+  belongs_to :plant, optional: true
   has_many :shifts, dependent: :destroy
   has_many :rounds, through: :shifts
   

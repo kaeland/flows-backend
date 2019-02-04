@@ -31,12 +31,14 @@ class Api::V1::UsersController < ApplicationController
   end
  
   def create
-    @user = User.create(user_params)
+    @user = User.new(user_params)
     if @user.valid? 
+      @user.save 
       @token = encode_token({ user_id: @user.id })
-      render json: { user: @user, jwt: @token }, status: :created
+      render json: { user: @user, jwt: @token, message: 'success' }, status: :created
     else
-      render json: { error: 'failed to create user' }, status: :not_acceptable
+      message = User.create(user_params).errors.full_messages.to_sentence
+      render json: { message: message }, status: :not_acceptable
     end
   end
 
