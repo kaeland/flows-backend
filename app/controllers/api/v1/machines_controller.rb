@@ -1,6 +1,6 @@
 class Api::V1::MachinesController < ApplicationController
-  skip_before_action :authorized
-  # skip_before_action :authorized, only: [:create]
+  # skip_before_action :authorized
+  skip_before_action :authorized, only: [:create]
 
   def index
     @machines = Machine.all 

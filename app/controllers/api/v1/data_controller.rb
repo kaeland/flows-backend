@@ -1,6 +1,6 @@
 class Api::V1::DataController < ApplicationController
-  skip_before_action :authorized
-  # skip_before_action :authorized, only: [:create]
+  # skip_before_action :authorized
+  skip_before_action :authorized, only: [:create]
 
   def index
     @data = Datum.all 

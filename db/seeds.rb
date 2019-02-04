@@ -68,7 +68,7 @@ end
 
 # Create Shifts
 15.times do  
-  Shift.create(name: "Day", user_id: rand(1..5), round_id: rand(1..3))
+  Shift.create(name: "Day", user_id: rand(1..4), round_id: rand(1..3))
 end
 
 
