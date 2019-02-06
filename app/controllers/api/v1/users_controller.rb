@@ -27,7 +27,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def profile
-    render json: { user: current_user }, status: :accepted 
+    render json: current_user.to_json(:except => :plant_id, :include => :plant), status: :accepted 
   end
  
   def create
