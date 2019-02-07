@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_07_164018) do
+ActiveRecord::Schema.define(version: 2019_02_07_183357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,15 +27,6 @@ ActiveRecord::Schema.define(version: 2019_02_07_164018) do
     t.datetime "updated_at"
     t.index ["addressable_id", "addressable_type"], name: "index_addresses_on_addressable_id_and_addressable_type"
     t.index ["plant_id"], name: "index_addresses_on_plant_id"
-  end
-
-  create_table "data", force: :cascade do |t|
-    t.string "name"
-    t.decimal "payload"
-    t.bigint "machine_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["machine_id"], name: "index_data_on_machine_id"
   end
 
   create_table "machine_rounds", force: :cascade do |t|
@@ -93,7 +84,6 @@ ActiveRecord::Schema.define(version: 2019_02_07_164018) do
   end
 
   add_foreign_key "addresses", "plants"
-  add_foreign_key "data", "machines"
   add_foreign_key "machine_rounds", "machines"
   add_foreign_key "machine_rounds", "rounds"
   add_foreign_key "machines", "plants"
