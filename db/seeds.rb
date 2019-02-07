@@ -22,10 +22,13 @@ Round.create(time_of_day: "3pm")
 # Round.create(name: "Night-Second", time_of_day: Tod::TimeOfDay.parse "noon")
 # Round.create(name: "Night-Third", time_of_day: Tod::TimeOfDay.parse "noon")
 
+# Create MachineRounds
+# MachineRound.create(machine_id: , round_id:)
+
 # Create Machines
-Machine.create(name: "Water Meter", plant_id: 1, round_id: 1)
-Machine.create(name: "Temp Sensor", plant_id: 1, round_id: 1)
-Machine.create(name: "Water Meter", plant_id: 1, round_id: 1)
+Machine.create(name: "Water Meter", plant_id: 1)
+Machine.create(name: "Temp Sensor", plant_id: 1)
+Machine.create(name: "Water Meter", plant_id: 1)
 
 # Create Data Points
 100.times do

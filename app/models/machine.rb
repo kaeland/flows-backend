@@ -1,5 +1,6 @@
 class Machine < ApplicationRecord
   belongs_to :plant
-  belongs_to :round, optional: true
+  has_many :machine_rounds
+  has_many :rounds, through: :machine_rounds
   has_many :data
 end

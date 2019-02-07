@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_31_154030) do
+ActiveRecord::Schema.define(version: 2019_02_07_164018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,14 +38,21 @@ ActiveRecord::Schema.define(version: 2019_01_31_154030) do
     t.index ["machine_id"], name: "index_data_on_machine_id"
   end
 
+  create_table "machine_rounds", force: :cascade do |t|
+    t.bigint "machine_id"
+    t.bigint "round_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["machine_id"], name: "index_machine_rounds_on_machine_id"
+    t.index ["round_id"], name: "index_machine_rounds_on_round_id"
+  end
+
   create_table "machines", force: :cascade do |t|
     t.string "name"
     t.bigint "plant_id"
-    t.bigint "round_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["plant_id"], name: "index_machines_on_plant_id"
-    t.index ["round_id"], name: "index_machines_on_round_id"
   end
 
   create_table "plants", force: :cascade do |t|
@@ -87,8 +94,9 @@ ActiveRecord::Schema.define(version: 2019_01_31_154030) do
 
   add_foreign_key "addresses", "plants"
   add_foreign_key "data", "machines"
+  add_foreign_key "machine_rounds", "machines"
+  add_foreign_key "machine_rounds", "rounds"
   add_foreign_key "machines", "plants"
-  add_foreign_key "machines", "rounds"
   add_foreign_key "shifts", "rounds"
   add_foreign_key "shifts", "users"
   add_foreign_key "users", "plants"
