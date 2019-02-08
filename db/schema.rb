@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_07_183357) do
+ActiveRecord::Schema.define(version: 2019_02_07_185430) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2019_02_07_183357) do
     t.bigint "round_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "data"
     t.index ["machine_id"], name: "index_machine_rounds_on_machine_id"
     t.index ["round_id"], name: "index_machine_rounds_on_round_id"
   end

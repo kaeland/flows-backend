@@ -4,6 +4,7 @@ class User < ApplicationRecord
   belongs_to :plant, optional: true
   has_many :shifts, dependent: :destroy
   has_many :rounds, through: :shifts
+  has_many :machine_rounds, through: :rounds 
   
   # Self joining associations
   has_many :operators, class_name: "User", foreign_key: "manager_id"

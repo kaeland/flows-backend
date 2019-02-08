@@ -22,38 +22,42 @@ Round.create(time_of_day: "3pm")
 # Round.create(name: "Night-Second", time_of_day: Tod::TimeOfDay.parse "noon")
 # Round.create(name: "Night-Third", time_of_day: Tod::TimeOfDay.parse "noon")
 
-# Create MachineRounds
-# MachineRound.create(machine_id: , round_id:)
-
 # Create Machines
-Machine.create(name: "Water Meter", plant_id: 1)
 Machine.create(name: "Temp Sensor", plant_id: 1)
-Machine.create(name: "Water Meter", plant_id: 1)
+Machine.create(name: "Flow Sensor", plant_id: 1)
+
+# Create MachineRounds
+MachineRound.create(machine_id: 1, round_id: 1, data: 23)
+MachineRound.create(machine_id: 1, round_id: 2, data: 23)
+MachineRound.create(machine_id: 1, round_id: 3, data: 23)
+MachineRound.create(machine_id: 2, round_id: 1, data: 23)
+MachineRound.create(machine_id: 2, round_id: 2, data: 23)
+MachineRound.create(machine_id: 2, round_id: 3, data: 23)
 
 # Create Data Points
-100.times do
-  Datum.create(
-    name: "water level",
-    payload: rand(0..100), 
-    machine_id: 1
-  )
-end
+# 100.times do
+#   Datum.create(
+#     name: "water level",
+#     payload: rand(0..100), 
+#     machine_id: 1
+#   )
+# end
 
-100.times do
-  Datum.create(
-    name: "temperature",
-    payload: rand(0..100), 
-    machine_id: 2
-  )
-end
+# 100.times do
+#   Datum.create(
+#     name: "temperature",
+#     payload: rand(0..100), 
+#     machine_id: 2
+#   )
+# end
 
-100.times do
-  Datum.create(
-    name: "water flow rate",
-    payload: rand(0..100), 
-    machine_id: 3
-  )
-end
+# 100.times do
+#   Datum.create(
+#     name: "water flow rate",
+#     payload: rand(0..100), 
+#     machine_id: 3
+#   )
+# end
 
 # Create Users without manager_id
 # Can Set a user as a manager on the frontend
@@ -71,7 +75,12 @@ end
 
 # Create Shifts
 15.times do  
-  Shift.create(name: "Day", user_id: rand(1..4), round_id: rand(1..3))
+  Shift.create(name: "Day", user_id: 1, round_id: 1)
+  Shift.create(name: "Day", user_id: 1, round_id: 2)
+  Shift.create(name: "Day", user_id: 1, round_id: 3)
+  Shift.create(name: "Night", user_id: 1, round_id: 3)
+  Shift.create(name: "Night", user_id: 1, round_id: 3)
+  Shift.create(name: "Night", user_id: 1, round_id: 3)
 end
 
 
