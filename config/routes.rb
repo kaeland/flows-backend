@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :shifts, only: [:index, :show, :create, :update]
       resources :machine_rounds, only: [:index, :create]
       post '/machine_rounds', to: 'machine_rounds#submit_rounds'
+      post '/machine_rounds/update', to: 'machine_rounds#update_machine_rounds'
     end
   end
 end
