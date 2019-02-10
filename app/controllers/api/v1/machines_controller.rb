@@ -4,7 +4,7 @@ class Api::V1::MachinesController < ApplicationController
 
   def index
     @machines = Machine.all 
-    render json: @machines, status: :ok
+    render json: @machines.to_json(:include => [:machine_rounds, :rounds]), status: :ok
   end
 
   def show 
