@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_11_174030) do
+ActiveRecord::Schema.define(version: 2019_02_11_181649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,14 +59,16 @@ ActiveRecord::Schema.define(version: 2019_02_11_174030) do
     t.string "time_of_day"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.bigint "shift_id"
+    t.bigint "plant_id"
+    t.index ["plant_id"], name: "index_rounds_on_plant_id"
+    t.index ["shift_id"], name: "index_rounds_on_shift_id"
   end
 
   create_table "shifts", force: :cascade do |t|
     t.string "name"
-    t.bigint "round_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["round_id"], name: "index_shifts_on_round_id"
   end
 
   create_table "user_shifts", force: :cascade do |t|
@@ -98,7 +100,8 @@ ActiveRecord::Schema.define(version: 2019_02_11_174030) do
   add_foreign_key "machine_rounds", "rounds"
   add_foreign_key "machine_rounds", "shifts"
   add_foreign_key "machines", "plants"
-  add_foreign_key "shifts", "rounds"
+  add_foreign_key "rounds", "plants"
+  add_foreign_key "rounds", "shifts"
   add_foreign_key "user_shifts", "shifts"
   add_foreign_key "user_shifts", "users"
   add_foreign_key "users", "plants"
