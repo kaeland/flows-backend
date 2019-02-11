@@ -1,3 +1,5 @@
+require 'pry'
+
 class Api::V1::MachinesController < ApplicationController
   # skip_before_action :authorized
   skip_before_action :authorized, only: [:create]
@@ -19,13 +21,20 @@ class Api::V1::MachinesController < ApplicationController
       machine_round = MachineRound.create(machine_id: @machine.id, round_id: r_id)
       @machine.machine_rounds << machine_round
     end
-    render json: @machine.to_json(:include => [:machine_rounds, :rounds]), status: :ok  
+    render json: Machine.all.to_json(:include => [:machine_rounds, :rounds]), status: :ok  
   end
 
   def update
     @machine = Machine.find(params[:id])
     @machine.update(machine_params)
     render json: @machine, status: :ok 
+  end
+
+  def destroy
+    @machine = Machine.find(params[:id])
+    binding.pry
+    @machine.destroy
+    render json: Machine.all.to_json(:include => [:machine_rounds, :rounds]), status: :ok
   end
 
   private
