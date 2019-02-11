@@ -1,4 +1,6 @@
 class Shift < ApplicationRecord
-  belongs_to :user, optional: true
-  belongs_to :round, optional: true
+  has_many :user_shifts, dependent: :destroy
+  has_many :users, through: :user_shifts
+
+  has_many :machine_rounds, dependent: :destroy
 end

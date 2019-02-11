@@ -32,7 +32,7 @@ class Api::V1::MachinesController < ApplicationController
 
   def destroy
     @machine = Machine.find(params[:id])
-    binding.pry
+    # binding.pry
     @machine.destroy
     render json: Machine.all.to_json(:include => [:machine_rounds, :rounds]), status: :ok
   end

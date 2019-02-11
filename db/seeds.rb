@@ -14,26 +14,52 @@ Plant.create(name: "Big Creek")
   Address.create(street: Faker::Address.street_address, city: Faker::Address.city, state: Faker::Address.state, zip: Faker::Address.zip, plant_id: 1)
 end
 
-# Create Rounds
-Round.create(time_of_day: "7am")
-Round.create(time_of_day: "11am")
-Round.create(time_of_day: "3pm")
-# Round.create(name: "Night-First", time_of_day: Tod::TimeOfDay.parse "noon")
-# Round.create(name: "Night-Second", time_of_day: Tod::TimeOfDay.parse "noon")
-# Round.create(name: "Night-Third", time_of_day: Tod::TimeOfDay.parse "noon")
-
 # Create Machines
 Machine.create(name: "Temp Sensor", plant_id: 1)
 Machine.create(name: "Flow Sensor", plant_id: 1)
 
-# Create MachineRounds
-MachineRound.create(machine_id: 1, round_id: 1, data: 23)
-MachineRound.create(machine_id: 1, round_id: 2, data: 23)
-MachineRound.create(machine_id: 1, round_id: 3, data: 23)
-MachineRound.create(machine_id: 2, round_id: 1, data: 23)
-MachineRound.create(machine_id: 2, round_id: 2, data: 23)
-MachineRound.create(machine_id: 2, round_id: 3, data: 23)
+# Create Users without manager_id
+# Can Set a user as a manager on the frontend
+5.times do 
+  User.create(
+    first_name: Faker::Name.first_name, 
+    last_name: Faker::Name.last_name, 
+    username: Faker::Team.creature, 
+    password_digest: BCrypt::Password.create("password"),  
+    bio: Faker::Lorem.sentence(3), 
+    avatar: Faker::Avatar.image, 
+    plant_id: 1
+    )
+end
 
+# Create Shifts
+Shift.create(name: "Day")
+
+# Create UserShifts
+UserShift.create(user_id: 1, shift_id: 1)
+
+# Create Rounds
+Round.create(time_of_day: "7am", plant_id: 1, shift_id: 1)
+Round.create(time_of_day: "11am", plant_id: 1, shift_id: 1)
+Round.create(time_of_day: "3pm", plant_id: 1, shift_id: 1)
+
+# Create MachineRounds
+MachineRound.create(machine_id: 1, round_id: 1, shift_id: 1, data: 23)
+MachineRound.create(machine_id: 1, round_id: 2, shift_id: 1, data: 23)
+MachineRound.create(machine_id: 1, round_id: 3, shift_id: 1, data: 23)
+MachineRound.create(machine_id: 2, round_id: 1, shift_id: 1, data: 23)
+MachineRound.create(machine_id: 2, round_id: 2, shift_id: 1, data: 23)
+MachineRound.create(machine_id: 2, round_id: 3, shift_id: 1, data: 23)
+
+
+
+
+
+
+
+
+
+# <--- Past seeds --->
 # Create Data Points
 # 100.times do
 #   Datum.create(
@@ -58,30 +84,6 @@ MachineRound.create(machine_id: 2, round_id: 3, data: 23)
 #     machine_id: 3
 #   )
 # end
-
-# Create Users without manager_id
-# Can Set a user as a manager on the frontend
-5.times do 
-  User.create(
-    first_name: Faker::Name.first_name, 
-    last_name: Faker::Name.last_name, 
-    username: Faker::Team.creature, 
-    password_digest: BCrypt::Password.create("password"),  
-    bio: Faker::Lorem.sentence(3), 
-    avatar: Faker::Avatar.image, 
-    plant_id: 1
-    )
-end
-
-# Create Shifts
-15.times do  
-  Shift.create(name: "Day", user_id: 1, round_id: 1)
-  Shift.create(name: "Day", user_id: 1, round_id: 2)
-  Shift.create(name: "Day", user_id: 1, round_id: 3)
-  Shift.create(name: "Night", user_id: 1, round_id: 3)
-  Shift.create(name: "Night", user_id: 1, round_id: 3)
-  Shift.create(name: "Night", user_id: 1, round_id: 3)
-end
 
 
 

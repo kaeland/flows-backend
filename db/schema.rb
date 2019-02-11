@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_07_185430) do
+ActiveRecord::Schema.define(version: 2019_02_11_174030) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,8 +35,10 @@ ActiveRecord::Schema.define(version: 2019_02_07_185430) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.decimal "data"
+    t.bigint "shift_id"
     t.index ["machine_id"], name: "index_machine_rounds_on_machine_id"
     t.index ["round_id"], name: "index_machine_rounds_on_round_id"
+    t.index ["shift_id"], name: "index_machine_rounds_on_shift_id"
   end
 
   create_table "machines", force: :cascade do |t|
@@ -61,12 +63,19 @@ ActiveRecord::Schema.define(version: 2019_02_07_185430) do
 
   create_table "shifts", force: :cascade do |t|
     t.string "name"
-    t.bigint "user_id"
     t.bigint "round_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["round_id"], name: "index_shifts_on_round_id"
-    t.index ["user_id"], name: "index_shifts_on_user_id"
+  end
+
+  create_table "user_shifts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "shift_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shift_id"], name: "index_user_shifts_on_shift_id"
+    t.index ["user_id"], name: "index_user_shifts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -87,8 +96,10 @@ ActiveRecord::Schema.define(version: 2019_02_07_185430) do
   add_foreign_key "addresses", "plants"
   add_foreign_key "machine_rounds", "machines"
   add_foreign_key "machine_rounds", "rounds"
+  add_foreign_key "machine_rounds", "shifts"
   add_foreign_key "machines", "plants"
   add_foreign_key "shifts", "rounds"
-  add_foreign_key "shifts", "users"
+  add_foreign_key "user_shifts", "shifts"
+  add_foreign_key "user_shifts", "users"
   add_foreign_key "users", "plants"
 end
