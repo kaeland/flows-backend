@@ -14,7 +14,12 @@ class Api::V1::MachinesController < ApplicationController
   
   def create
     @machine = Machine.create(machine_params)
-    render json: @machine, status: :ok  
+    Round.all.each do |r|
+      r_id = r.id 
+      machine_round = MachineRound.create(machine_id: @machine.id, round_id: r_id)
+      @machine.machine_rounds << machine_round
+    end
+    render json: @machine.to_json(:include => [:machine_rounds, :rounds]), status: :ok  
   end
 
   def update
@@ -27,8 +32,7 @@ class Api::V1::MachinesController < ApplicationController
   def machine_params
     params.require(:machine).permit(
       :name, 
-      :plant_id,
-      :round_id
+      :plant_id
     )
   end
 end
