@@ -17,7 +17,8 @@ class Api::V1::MachineRoundsController < ApplicationController
     @machine_round = MachineRound.find(params[:id])
     # binding.pry 
     @machine_round.update(machine_round_params)
-    render json: @machine_round, status: :ok 
+    @data_from_machines = Machine.create_machine_data
+    render json: @data_from_machines, status: :ok 
   end
 
   private
