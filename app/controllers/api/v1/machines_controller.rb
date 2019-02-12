@@ -45,3 +45,8 @@ class Api::V1::MachinesController < ApplicationController
     )
   end
 end
+
+# Example includes association:
+# konata.to_json(:include => { 
+#   :posts => { :include => { :comments => {:only => :body } }, :only => :title } 
+# })
