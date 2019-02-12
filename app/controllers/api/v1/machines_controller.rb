@@ -15,6 +15,11 @@ class Api::V1::MachinesController < ApplicationController
     render json: @data_from_machines, status: :ok 
   end
 
+  def get_roundsheet_data
+    @data = Machine.map_machine_round_data
+    render json: @data, status: :ok 
+  end
+
   def show 
     @machine = Machine.find(params[:id])
     render json: @machine.render_chart_data, status: :ok
