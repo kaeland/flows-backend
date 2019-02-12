@@ -9,9 +9,15 @@ class Api::V1::MachinesController < ApplicationController
     render json: @machines.to_json(:include => [:machine_rounds, :rounds]), status: :ok
   end
 
+  def get_machine_data
+    @data_from_machines = Machine.create_machine_data
+    # binding.pry
+    render json: @data_from_machines, status: :ok 
+  end
+
   def show 
     @machine = Machine.find(params[:id])
-    render json: @machine, status: :ok
+    render json: @machine.render_chart_data, status: :ok
   end
   
   def create

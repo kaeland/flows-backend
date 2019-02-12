@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       post '/login', to: 'auth#create'
       post '/signup', to: 'users#create'
       get '/profile', to: 'users#profile'
+      get 'machines/data' => 'machines#get_machine_data'
       resources :users, only: [:index, :show, :update, :destroy ]
       resources :plants, only: [:index, :show, :create, :update]
       resources :addresses, only: [:index, :show, :create, :update]
