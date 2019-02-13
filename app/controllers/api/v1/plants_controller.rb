@@ -9,7 +9,7 @@ class Api::V1::PlantsController < ApplicationController
 
   def show 
     @plant = Plant.find(params[:id])
-    render json: @plant, status: :ok
+    render json: { plant: @plant, stats: @plant.plant_stats } , status: :ok
   end
   
   def create
@@ -21,6 +21,12 @@ class Api::V1::PlantsController < ApplicationController
     @plant = Plant.find(params[:id])
     @plant.update(plant_params)
     render json: @plant, status: :ok 
+  end
+
+  # Extra routes below: 
+  def get_plant_stats
+    @plant_stats = Plant.plant_stats
+    render json: @plant_stats, status: :ok 
   end
 
   private
